@@ -1,0 +1,11 @@
+<p><a href="/albums/<%= @album.id %>/upload">Upload New Picture</a></p>
+<br><br>
+
+	<div class="carousel">
+		<ul class ="frames">
+			<% @album.photos.each do |photo| %>
+			<li> <img src="<%= photo.gsub_url %>" height="200" style="max-width: 400px"></li>
+			<% end %>
+		</ul>
+	</div>
+</div>

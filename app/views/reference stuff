@@ -1,0 +1,6 @@
+def gsub_url
+  self.url.gsub(//,'')
+end
+
+<img src="<%photo.gsub_url%>" alt="">
+<img src="/uploads/images/picture.jpg" alt="">
