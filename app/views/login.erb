@@ -1,4 +1,9 @@
-<p> Login </p>
+<h1> Login </h1>
+
+<% if current_user == nil %>
+<p> You need to be signed in to see the albums! Sign in below or <a href="/new">Sign Up</a> today</p>
+<% end %>
+
 
 <form action="/login" method="post" id="login">
   <div>

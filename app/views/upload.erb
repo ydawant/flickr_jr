@@ -1,4 +1,7 @@
-<form action="/albums/<%= @album.id %>/upload" method="post" enctype="multipart/form-data">
-  <p><input type="file" name="image"></p>
-  <p><input type="submit" name="submit" value="Upload"></p>
+<div class='container'>    
+<form action="/albums/<%= @album.id %>/upload" id="new_picture" method="post" enctype="multipart/form-data">
+  <input type="file" name="image[1]"><br>
+  <input type="submit" name="submit" value="Upload">
 </form>
+
+<p><a href="#" id='more_pictures'> More Pictures </a></p>

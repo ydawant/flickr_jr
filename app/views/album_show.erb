@@ -1,11 +1,24 @@
-<p><a href="/albums/<%= @album.id %>/upload">Upload New Picture</a></p>
-<br><br>
+<div class='container'>
 
-	<div class="carousel">
-		<ul class ="frames">
-			<% @album.photos.each do |photo| %>
-			<li> <img src="<%= photo.gsub_url %>" height="200" style="max-width: 400px"></li>
-			<% end %>
-		</ul>
-	</div>
+  <h1> <%= @album.album_name %> </h1>
+
+
+  <% if @album.user_id == current_user.id %>
+  <p><a href="/albums/<%= @album.id %>/upload">Upload New Picture</a></p>
+  <br><br>
+  <% end %>
+
+  <div class="carousel">
+    <ul class ="frames">
+     <% @album.photos.each do |photo| %>
+     <% if @album.photos.first == photo %>
+     <li class="first active"> <img src="<%= photo.file.url %>" height="200" style="max-width: 400px"><br><a class="like" href="/albums/<%= @album.id %>/photo/<%= photo.id %>">Like</a> <span class ='like_number'><%= photo.likes %></span></li>
+     <% else %>
+     <li class="next"> <img src="<%= photo.file.url %>" height="200" style="max-width: 400px"><br><a class="like" href="/albums/<%= @album.id %>/photo/<%= photo.id %>">Like</a> <span class ='like_number'><%= photo.likes %></span></li>
+     <% end %>
+     <% end %>
+   </ul>
+ </div>
+
 </div>
+

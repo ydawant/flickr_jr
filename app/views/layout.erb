@@ -16,8 +16,25 @@
   <script src="/js/application.js"></script>
 
   <title></title>
+  <div class ="nav">
+    <h1><a href="/">Flickr, Jr.</a></h1>
+    <ul>
+      <li><a href='/albums'>Albums</a></li>
+      <% if current_user %>
+      <li><a href='/albums/new'> Create New</a></li>
+      <li><a href='/logout'>Logout</a></li>
+      <li><a href='/albums'><%= current_user.username %></a></li>
+      <% else %>
+      <li><a href='/login'>Login</a></li>
+      <li><a href='/new'>Sign Up</a></li>
+      <% end %>     
+    </ul>
+  </div>
+
 </head>
 <body>
+  <div class="overlay">
+  </div>
   <%= yield %>
 </body>
 </html>

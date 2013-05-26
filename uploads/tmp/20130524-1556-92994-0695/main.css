@@ -1,0 +1,50 @@
+.container {
+  /*
+    If you have a block-level element of a certain width, margin: 0 auto;
+    will how you center it inside its parent container.
+
+    See: http://bluerobot.com/web/css/center1.html
+    
+    Don't change the container width.
+  */
+  margin: 0 auto;  
+  width: 720px;
+}
+
+div#registration {
+  width: 360px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background: -webkit-linear-gradient(left, #182829, #53868b);
+  background: -moz-linear-gradient(left, #182829, #53868b);
+  background: -o-linear-gradient(left, #182829, #53868b);
+  background: -ms-linear-gradient(left, #182829, #53868b);
+  background: linear-gradient(left, #182829, #53868b);
+}
+
+input, button {
+  border: 3px solid gray;
+  padding: 15px;
+  background: white;
+  margin: 0 0 10px 0;
+  -webkit-box-shadow: 0px 0px 10px black;
+  box-shadow: 0px 0px 10px black;
+}
+
+button {
+  border-color: #182829;
+  color: white;
+  background: #080d0d;
+  -webkit-box-shadow: 0px 0px 10px white;
+  box-shadow: 0px 0px 10px white;
+  float: right;
+}
+
+input[name="email"] {
+  width: 326px;
+}
+
+input[name="password"] {
+  margin-right: 10px;
+}

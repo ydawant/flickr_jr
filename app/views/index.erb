@@ -1,9 +1,22 @@
 <div class="container">
-<p><a href='/login'>Login</a></p>
-<p><a href='/logout'>Logout</a></p>
-<p><a href='/new'>Create New</a></p>
-<p><a href='/albums'>Albums</a></p>
-</div>
+  <ul class="full_list">
+    <% @albums.each do |album| %>
+    <% if album.not_empty? %>
+    <li>
+      <% if current_user %>
+      <a href="/albums/<%=album.id%>"><%= album.album_name %></a></li>
+      <% else %>
+      <%= album.album_name %></li>
+      <% end %>
+      <ul class="each_album">
+        <% album.photos.sort_by { |photo| photo.likes }.reverse.each do |photo| %>
+        <li id="<%=photo.id%>"><img src="<%= photo.file.url %>"  width='100' max-height='85'><br><br><br><br><p><%= photo.likes%></p></li>
+        <% end %>
+      </ul>
+      <% end %>
+      <% end %>
+    </ul>
+  </div>
 
 
 

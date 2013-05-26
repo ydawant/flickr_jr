@@ -15,8 +15,6 @@ require 'pg'
 require 'active_record'
 require 'logger'
 require 'bcrypt'
-require 'carrierwave'
-require 'carrierwave/orm/activerecord'
 require 'sinatra'
 require "sinatra/reloader" if development?
 
@@ -33,3 +31,8 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+
+set :root, APP_ROOT
+
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'

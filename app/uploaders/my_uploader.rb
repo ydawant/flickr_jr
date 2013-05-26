@@ -1,10 +1,9 @@
 class MyUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
-
-    process :resize_to_fill => [400, 400]
+  include CarrierWave
+    storage :file
 
   def store_dir
-    "#{APP_ROOT}/public/uploads/images"
+    "uploads/images"
   end
 
 end
