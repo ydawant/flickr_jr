@@ -8,6 +8,11 @@ $(document).ready(function() {
      'width':'100%',
      'height':'100%'
    })
+
+    $('.each album li').hover(function(){
+      $(this).animate({rotate: '+=10deg'}, 0)
+    });
+
     var photo = $('li#'+photo_id).html();
     $('.overlay').append(photo);
     $('.overlay img').css({ 'position':'absolute',
@@ -50,18 +55,22 @@ $(document).ready(function() {
   });
 
 
-  $('.carousel').on("click", ".frames li.active img", function() {
-    var current = $('.frames li.active')
-    
-    current.prev().removeClass('previous')
-    current.next().next().addClass('next')
-    current.next().removeClass('next')
-    
-    $('.frames li').animate({left: '-=200px'}, 600);
-    
-    current.next().addClass('active')
-    current.removeClass('active')
-    current.addClass('previous')
+  $('.carousel').on("click", ".frames li.active img", function(e) {
+    if ( $('.frames li.active').html() == $('.frames li:last').html()) {
+      e.preventDefault }
+    else {
+      var current = $('.frames li.active')
+
+      current.prev().removeClass('previous')
+      current.next().next().addClass('next')
+      current.next().removeClass('next')
+
+      $('.frames li').animate({left: '-=200px'}, 600);
+
+      current.next().addClass('active')
+      current.removeClass('active')
+      current.addClass('previous')
+    };
   });
 
   $('.carousel').on("click", ".frames li.next img", function() {

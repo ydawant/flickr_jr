@@ -183,6 +183,9 @@ th {
 
 .each_album li:hover {
   opacity:0.5;
+  transform:rotate(5deg);
+  -ms-transform:rotate(5deg); /* IE 9 */
+  -webkit-transform:rotate(5`deg); /* Safari and Chrome */
 }
 
 .each_album p {
