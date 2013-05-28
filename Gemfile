@@ -17,6 +17,7 @@ gem 'rake'
 gem 'carrierwave'
 
 gem 'shotgun'
+gem 'pg'
 
 group :test do
   gem 'faker'
