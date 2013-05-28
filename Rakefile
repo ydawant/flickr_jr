@@ -1,17 +1,4 @@
 require 'rake'
-require 'rspec/core/rake_task'
-
-begin
-  require "rspec/core/rake_task"
-
-  desc "Run all examples"
-  RSpec::Core::RakeTask.new(:spec) do |t|
-    t.rspec_opts = %w[--color]
-    t.pattern = 'spec/*_spec.rb'
-  end
-rescue LoadError
-end
-
 
 require ::File.expand_path('../config/environment', __FILE__)
 
@@ -134,7 +121,7 @@ task "console" do
   exec "irb -r./config/environment"
 end
 
-desc "Run the specs"
-RSpec::Core::RakeTask.new(:spec)
+# desc "Run the specs"
+# RSpec::Core::RakeTask.new(:spec)
 
-task :default  => :specs
+# task :default  => :specs
