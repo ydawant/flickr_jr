@@ -1,13 +1,15 @@
 <p> Create New Account </p>
 
-<form action="/new" method="post" id="login">
+<form action="/new" method="post" id="login" enctype="multipart/form-data">
   <div>
-    <label for="user[username]">Username:</label>
-    <input type="text" name="user[username]">
+    <label for="user[username">Username:</label>
+    <input type="text" name="user[username]" autofocus>
   </div>
   <div>
     <label for="user[password]">Password:</label>
     <input type="password" name="user[password]">
   </div>
-  <button type="submit">Submit</button>
+  Profile Picture:
+  <input type="file" name="user[file]">
+  <input type="submit" value="Submit">
 </form>

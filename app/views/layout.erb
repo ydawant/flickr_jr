@@ -19,11 +19,11 @@
   <div class ="nav">
     <h1><a href="/">Flickr, Jr.</a></h1>
     <ul>
-      <li><a href='/albums'>Albums</a></li>
       <% if current_user %>
-      <li><a href='/albums/new'> Create New</a></li>
+      <li><a href='/user/<%=current_user.id%>'><%= current_user.username %></a></li>
+      <li><a href='/'>All Albums</a></li>
+      <li><a href='/albums/upload'> Create New</a></li>
       <li><a href='/logout'>Logout</a></li>
-      <li><a href='/albums'><%= current_user.username %></a></li>
       <% else %>
       <li><a href='/login'>Login</a></li>
       <li><a href='/new'>Sign Up</a></li>

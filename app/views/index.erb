@@ -1,16 +1,16 @@
 <div class="container">
   <ul class="full_list">
     <% @albums.each do |album| %>
-    <% if album.not_empty? %>
+    <% if album.not_empty? && album.public? || (current_user && album.private? && album.user_id == current_user.id) %>
     <li>
       <% if current_user %>
-      <a href="/albums/<%=album.id%>"><%= album.album_name %></a></li>
+      <a href="/albums/<%=album.id%>"><%= album.album_name %>,<%=User.find(album.user_id).username%></a>
       <% else %>
-      <%= album.album_name %></li>
+      <%= album.album_name %>, <%=User.find(album.user_id).username%></li>
       <% end %>
       <ul class="each_album">
-        <% album.photos.order("likes DESC").each do |photo| %>
-        <li id="<%=photo.id%>"><img src="<%= photo.file.url %>"  width='100' max-height='85'><br><br><br><br><p><%= photo.likes%></p></li>
+        <% album.photos.each do |photo| %>
+        <li id="<%=photo.id%>"><img src="<%= photo.file.thumb.url %>"><p><%= photo.likes.length%></p></li>
         <% end %>
       </ul>
       <% end %>

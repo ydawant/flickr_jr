@@ -1,48 +1,61 @@
-get '/albums' do
-  if current_user
-    @albums = Album.where(:user_id => current_user.id)
-    @sign_in = false
-    erb :albums
-  else
-    @sign_in = true
-    redirect '/login'
-  end
-end
-
 get '/albums/new' do
   erb :new_album
 end
 
-post '/albums/new' do
-  @album = Album.create(:album_name => params[:album_name], :user_id => current_user.id)
-  redirect "/albums/#{@album.id}/upload"
+get '/albums/upload' do
+ erb :upload
 end
 
+post '/albums/upload' do
+  params[:private] == "true" ? @private = true : @private = false; 
+  album = Album.create(:album_name => params[:album_name], :user_id => current_user.id, :private => @private)
+  params[:image].each do |k, v|
+    photo = Photo.new
+    photo.file = v
+    photo.album_id = album.id
+    photo.save
+  end
+  redirect "albums/#{album.id}"
+end
+
+get '/albums/:album_id/edit_album' do
+  @album = Album.find(params[:album_id])
+  erb :edit_album
+end
+
+get '/albums/:album_id/edit' do
+ @album = Album.find(params[:album_id])
+ erb :upload_more
+end
+
+post '/albums/:album_id/edit' do
+  params[:private] == "true" ? @private = true : @private = false; 
+  album = Album.find(params[:album_id])
+  album.update_attributes(:album_name => params[:album_name], :private => @private)
+  if params[:image] != nil
+    params[:image].each do |k, v|
+      photo = Photo.new
+      photo.file = v
+      photo.album_id = params[:album_id]
+      photo.save
+    end
+  end
+redirect "albums/#{params[:album_id]}"
+end
 
 get '/albums/:album_id' do
   @album = Album.find(params[:album_id])
   erb :album_show
 end
 
-get '/albums/:album_id/upload' do
- @album = Album.find(params[:album_id])
- erb :upload
-end
-
-post '/albums/:album_id/upload' do
-  params[:image].each do |k, v|
-    photo = Photo.new
-    photo.file = v
-    photo.album_id = params[:album_id]
-    photo.save
+get '/albums/:album_id/photo/:photo_id' do
+  if Like.find_by_user_id_and_photo_id(current_user.id,params[:photo_id]) == nil
+  Like.create(:user_id => current_user.id, :photo_id => params[:photo_id])
   end
-  redirect "albums/#{params[:album_id]}"
+  redirect "/albums/#{params[:album_id]}"
 end
 
-post '/albums/:album_id/photo/:photo_id' do
-  photo = Photo.find(params[:photo_id])
-  photo.update_attributes(:likes => photo.likes.to_i + 1)
-
-  content_type :json
-  {'likes' => photo.likes}.to_json
+get "/albums/:album_id/photo/:photo_id/dislike" do
+  Like.find_by_user_id_and_photo_id(current_user.id,params[:photo_id]).destroy
+  redirect "/albums/#{params[:album_id]}"
 end

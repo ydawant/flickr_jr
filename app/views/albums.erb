@@ -1,9 +1,22 @@
 <div class='container'>
-<ul>
+<ul class="Private">
+  Private Albums:
   <% @albums.each do |album| %>
-    <li><a href="/albums/<%=album.id%>"><%= album.album_name %></a></li>
+  <% if album.private? == true %> 
+    <li><a href="/albums/<%=album.id%>"><%= album.album_name %> (<%=album.date%>)</a></li>
+    <% end %>
   <% end %>
 </ul>
+
+<ul class="Public">
+  Public Albums:
+  <% @albums.each do |album| %>
+  <% if album.public? == true %> 
+    <li><a href="/albums/<%=album.id%>"><%= album.album_name %> (<%=album.date%>)</a></li>
+    <% end %>
+  <% end %>
+</ul>
+
 
 <p><a href="/albums/new">New Album</a></p>
 

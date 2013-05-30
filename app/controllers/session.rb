@@ -5,7 +5,7 @@ end
 post '/new' do
   user = User.create(params[:user])
   session[:user_id] = user.id
-  redirect '/'
+  redirect "/user/#{user.id}"
 end
 
 get '/login' do

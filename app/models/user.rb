@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   attr_accessor :new_password
   has_many :albums
   has_many :photos, :through => :albums
+  has_many :likes
+  mount_uploader :file, MyUploader
 
   def password
     @password ||= Password.new(self.password_hash)
@@ -14,7 +16,7 @@ class User < ActiveRecord::Base
   end
 
   def self.create(params = {})
-    @user = User.new(:username => params[:username])
+    @user = User.new(params)
     @user.password = params[:password]
     @user.save!
     @user

@@ -12,12 +12,11 @@ gem 'thin'
 gem 'bcrypt-ruby'
 gem 'activesupport'
 gem 'activerecord'
-gem 'mini_magick'
 gem 'rake'
 gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'shotgun'
-gem 'pg'
 
 group :test do
   gem 'faker'

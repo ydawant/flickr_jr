@@ -149,6 +149,7 @@ th {
 }
 
 .full_list li a {
+  position: absolute;
   text-decoration: none;
   color: #0077B3;
 }
@@ -171,14 +172,17 @@ th {
   height: 150px;
   width: 150px;
   float: left;
+  margin-top:50px;
 }
 
 .each_album li img {
-   position:absolute;
-   top:0;
-   bottom:0;
-   margin:auto;
-   margin-left:25px;
+  position:absolute;
+  top:0;
+  bottom:0;
+  right: 0;
+  left: 0;
+  margin:auto;
+
 }
 
 .each_album li:hover {
@@ -188,12 +192,21 @@ th {
   -webkit-transform:rotate(5deg); /* Safari and Chrome */
 }
 
-.each_album p {
-  text-align: center;
+.each_album li p {
+  position: absolute;
+  text-align:center;
   color:black;
   font-size:12px;
+  right:0;
+  left: 0;
+  bottom:0;
 }
 
 .all_albums ul li {
-  border-bottom: 1px black solid;  
+  border-bottom: 1px black solid;
+}
+
+.all_albums ul li a {
+  position:absolute;
+  top: 0px;
 }

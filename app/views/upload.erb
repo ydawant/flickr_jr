@@ -1,7 +1,14 @@
 <div class='container'>    
-<form action="/albums/<%= @album.id %>/upload" id="new_picture" method="post" enctype="multipart/form-data">
+<form action="/albums/upload" id="new_picture" method="post" enctype="multipart/form-data">
+  <input type="text" name="album_name" placeholder="Album Name"/>
   <input type="file" name="image[1]"><br>
   <input type="submit" name="submit" value="Upload">
+  Private? <br>
+    <label for="true">Yes</label>
+    <input type="radio" name="private" value="true" />
+    <label for="false">No</label>
+    <input type="radio" name="private" value="false" /></br>
+
 </form>
 
 <p><a href="#" id='more_pictures'> More Pictures </a></p>

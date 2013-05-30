@@ -1,0 +1,23 @@
+<h1><img src="<%= current_user.file.url %>" height="200" style="max-width: 400px"> Welcome, <%=current_user.username%> </h1>
+
+
+<ul class="Private">
+  Private Albums:
+  <% current_user.albums.each do |album| %>
+  <% if album.private? == true %> 
+    <li><a href="/albums/<%=album.id%>"><%= album.album_name %> (<%=album.date%>)</a></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<ul class="Public">
+  Public Albums:
+  <% current_user.albums.each do |album| %>
+  <% if album.public? == true %> 
+    <li><a href="/albums/<%=album.id%>"><%= album.album_name %> (<%=album.date%>)</a></li>
+    <% end %>
+  <% end %>
+</ul>
+
+
+<p><a href="/albums/upload">New Album</a></p>

@@ -13,17 +13,15 @@ $(document).ready(function() {
       $(this).animate({rotate: '+=10deg'}, 0)
     });
 
-    var photo = $('li#'+photo_id).html();
+    var thumb = $('li#'+photo_id).html();
+    var photo = thumb.replace('thumb_', '');
     $('.overlay').append(photo);
     $('.overlay img').css({ 'position':'absolute',
       'top':'0',
       'bottom':'0',
+      'left' : '0',
+      'right' : '0',
       'margin':'auto',
-      'margin-left':'30%',
-      'height': '50%',
-      'width': '50%',
-      'min-height': '300px',
-      'min-width': '300px',
       'padding' : '5px',
       'background-color' : 'black',
       'opacity' : '1',
@@ -108,15 +106,15 @@ $(document).ready(function() {
     counter ++ ;
   });
 
-  $('.container').on("click", ".active .like", function(e) {
-    e.preventDefault();
+  // $('.container').on("click", ".active .like", function(e) {
+  //   e.preventDefault();
 
-    var url  = $(this).attr('href');
-    var data = $(this).serialize();
+  //   var url  = $(this).attr('href');
+  //   var data = $(this).serialize();
 
-    $.post(url, data, function(response) {
-      // debugger 
-      $('.container .active .like_number').text(response['likes'])
-    });
-  });
+  //   $.post(url, data, function(response) {
+  //     // debugger 
+  //     $('.container .active .like_number').text(response['likes'])
+  //   });
+  // });
 });
