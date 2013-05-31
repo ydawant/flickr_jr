@@ -1,6 +1,7 @@
 <div class='container'>
 
   <h1> <%= @album.album_name %> </h1>
+  <h2> <a href='/user/<%= User.find(@album.user_id).id %>'><%= User.find(@album.user_id).username %></a></h2>
 
 
   <% if @album.user_id == current_user.id %>

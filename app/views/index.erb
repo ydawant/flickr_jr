@@ -4,7 +4,7 @@
     <% if album.not_empty? && album.public? || (current_user && album.private? && album.user_id == current_user.id) %>
     <li>
       <% if current_user %>
-      <a href="/albums/<%=album.id%>"><%= album.album_name %>,<%=User.find(album.user_id).username%></a>
+      <a href="/albums/<%=album.id%>"><%= album.album_name %>, <%=User.find(album.user_id).username%></a>
       <% else %>
       <%= album.album_name %>, <%=User.find(album.user_id).username%></li>
       <% end %>

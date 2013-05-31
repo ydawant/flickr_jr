@@ -4,6 +4,9 @@
 <p> You need to be signed in to see the albums! Sign in below or <a href="/new">Sign Up</a> today</p>
 <% end %>
 
+<% if @fail == true %>
+<p> The username and password do not match, please try again </p>
+<% end %>
 
 <form action="/login" method="post" id="login">
   <div>

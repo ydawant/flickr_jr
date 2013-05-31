@@ -82,8 +82,8 @@ th {
 }
 
 .frames li.active img {
-  height :400px;
-  width: 400px;
+  height :500px;
+  max-width: 500px;
 
 }
 
