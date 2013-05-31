@@ -1,8 +1,8 @@
-$(document).ready(function() {
+  $(document).ready(function() {
   $('.each_album li').click(function(e){
     photo_id = $(this).attr('id')
-    $('.overlay').css({'z-index':'10000',
-     'opacity':'0.9',
+    $('.overlay').css({'z-index':'10000', 
+     'opacity':'0.9', 
      'background-color':'gray',
      'position': 'absolute',
      'width':'100%',
@@ -13,17 +13,15 @@ $(document).ready(function() {
       $(this).animate({rotate: '+=10deg'}, 0)
     });
 
-    var photo = $('li#'+photo_id).html();
+    var thumb = $('li#'+photo_id).html();
+    var photo = thumb.replace('thumb_', '');
     $('.overlay').append(photo);
     $('.overlay img').css({ 'position':'absolute',
       'top':'0',
       'bottom':'0',
+      'left' : '0',
+      'right' : '0',
       'margin':'auto',
-      'margin-left':'30%',
-      'height': '50%',
-      'width': '50%',
-      'min-height': '300px',
-      'min-width': '300px',
       'padding' : '5px',
       'background-color' : 'black',
       'opacity' : '1',
@@ -38,11 +36,11 @@ $(document).ready(function() {
 
   $(document).keyup(function(event) {
     if(event.keyCode == 27) {
-      $('.overlay').css({'z-index':'0',
-       'opacity':'0',
+      $('.overlay').css({'z-index':'0', 
+       'opacity':'0', 
        'background-color':'gray',
        'height':'0%',
-       'width':'0%'
+       'width':'0%' 
      })
       $('.overlay img').remove();
       $('.overlay p').remove();
@@ -75,11 +73,11 @@ $(document).ready(function() {
 
   $('.carousel').on("click", ".frames li.next img", function() {
     var current = $('.frames li.active')
-
+    
     current.prev().removeClass('previous')
     current.next().next().addClass('next')
     current.next().removeClass('next')
-
+    
     $('.frames li').animate({left: '-=200px'}, 600);
 
     current.next().addClass('active')
@@ -93,7 +91,7 @@ $(document).ready(function() {
     current.prev().removeClass('previous')
     current.prev().prev().addClass('previous')
     current.prev().addClass('active')
-
+    
     $('.frames li').animate({left: '+=200px'}, 600);
 
     current.next().removeClass('next')
@@ -108,17 +106,15 @@ $(document).ready(function() {
     counter ++ ;
   });
 
-  $('.container').on("click", ".active .like", function(e) {
-    e.preventDefault();
+  // $('.container').on("click", ".active .like", function(e) {
+  //   e.preventDefault();
 
-    var url  = $(this).attr('href');
-    var data = $(this).serialize();
+  //   var url  = $(this).attr('href');
+  //   var data = $(this).serialize();
 
-    $.post(url, data, function(response) {
-      // debugger
-      $('.container .active .like_number').text(response['likes'])
-    });
-  });
+  //   $.post(url, data, function(response) {
+  //     // debugger 
+  //     $('.container .active .like_number').text(response['likes'])
+  //   });
+  // });
 });
-
-

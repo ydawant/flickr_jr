@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :photos, :through => :albums
   has_many :likes
   mount_uploader :file, MyUploader
+  has_many :followers, :class_name => 'Following', :foreign_key => 'user_id'
+  has_many :following, :class_name => 'Following', :foreign_key => 'follower_id'  
 
   def password
     @password ||= Password.new(self.password_hash)
@@ -30,5 +32,6 @@ class User < ActiveRecord::Base
   def time
     ((Time.now() - self.created_at) / 3600.0).round(1)
   end
+
 
 end

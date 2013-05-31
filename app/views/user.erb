@@ -1,23 +1,70 @@
-<h1><img src="<%= current_user.file.url %>" height="200" style="max-width: 400px"> Welcome, <%=current_user.username%> </h1>
+<% if @user.id == current_user.id %>
+  <h1> Welcome, <%=current_user.username%> </h1>
+  <img src="<%= current_user.file.url %>" height="200" style="max-width: 400px">
 
-
-<ul class="Private">
-  Private Albums:
-  <% current_user.albums.each do |album| %>
-  <% if album.private? == true %> 
+  <ul class="Private">
+    Private Albums:
+    <% current_user.albums.each do |album| %>
+    <% if album.private? == true %> 
     <li><a href="/albums/<%=album.id%>"><%= album.album_name %> (<%=album.date%>)</a></li>
     <% end %>
-  <% end %>
-</ul>
+    <% end %>
+  </ul>
 
-<ul class="Public">
-  Public Albums:
-  <% current_user.albums.each do |album| %>
-  <% if album.public? == true %> 
+  <ul class="Public">
+    Public Albums:
+    <% current_user.albums.each do |album| %>
+    <% if album.public? == true %> 
     <li><a href="/albums/<%=album.id%>"><%= album.album_name %> (<%=album.date%>)</a></li>
     <% end %>
+    <% end %>
+  </ul>
+
+  Followers:
+
+  <ul>
+    <% current_user.followers.each do |follower| %>
+    <li><a href='/user/<%=User.find(follower.follower_id).id%>'><%=User.find(follower.follower_id).username %></a></li>
+    <% end %>
+  </ul>
+
+  Following:
+  <ul>
+    <% current_user.following.each do |following| %>
+    <li><a href='/user/<%=User.find(following.user_id).id%>'><%= User.find(following.user_id).username %></a></li>
+    <% end %>
+  </ul>
+
+
+  <p><a href="/albums/upload">New Album</a></p>
+
+<% else %>
+
+<% if Following.find_by_user_id_and_follower_id(@user.id, current_user.id) && Following.find_by_user_id_and_follower_id(@user.id, current_user.id).blocked == true %>
+YOU HAVE BEEN BLOCKED
+<% else %>
+  <h1> <%= @user.username %></h1>
+  <h1><img src="<%= @user.file.url %>" height="200" style="max-width: 400px"></h1>
+  <% if Following.find_by_user_id_and_follower_id(current_user.id, @user.id) == false %>
+    <a href='/user/<%=@user.id%>/follow'> Follow </a><br>
+    <a href='/user/<%=@user.id%>/block'> Block </a>
+  <% else %>
+    <% if Following.find_by_user_id_and_follower_id(current_user.id, @user.id) && Following.find_by_user_id_and_follower_id(current_user.id, @user.id).blocked == true %>
+    <a href='/user/<%=@user.id%>/unblock'> Unblock </a>
+    <% else %>
+    <a href='/user/<%=@user.id%>/unfollow'> Unfollow </a><br>
+    <% end %>
+  <% end %> 
+
+
+
+  <ul class="Public">
+    Albums:
+    <% current_user.albums.each do |album| %>
+    <% if album.public? == true %> 
+    <li><a href="/albums/<%=album.id%>"><%= album.album_name %> (<%=album.date%>)</a></li>
+    <% end %>
+    <% end %>
+  </ul>
   <% end %>
-</ul>
-
-
-<p><a href="/albums/upload">New Album</a></p>
+  <% end %>

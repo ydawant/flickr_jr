@@ -1,0 +1,12 @@
+<form action="/user/edit" method="post" id="login">
+  <div>
+    <label for="user[username]">Change Your Username:</label>
+    <input type="text" name="user[username]" value="<%=current_user.username%>">
+  </div>
+  MUST RETYPE PASSWORD:
+  <div>
+    <label for="user[password]">Change Your Password:</label>
+    <input type="password" name="user[password]">
+  </div>
+  <button type="submit">Submit</button>
+</form>

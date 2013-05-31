@@ -36,3 +36,5 @@ set :root, APP_ROOT
 
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
+require 'mini_magick'
+require 'carrierwave/processing/mini_magick'
