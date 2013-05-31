@@ -103,21 +103,35 @@ $(document).ready(function() {
   var counter = 2
   $('.container').on("click", "#more_pictures", function(event) {
     event.preventDefault();
-    $('form#new_picture input[type="file"]:last').after("<input type='file' name='image[" + counter + "]'><br>");
+    $('form#new_picture input[type="file"]:last').after("<input type='file' id='file' name='image[" + counter + "]'><br>");
     counter ++ ;
   });
 
-  // $('.container').on("click", ".active .like", function(e) {
-  //   e.preventDefault();
+  $('.container').on("click", ".active .like", function(e) {
+    e.preventDefault();
 
-  //   var url  = $(this).attr('href');
-  //   var data = $(this).serialize();
+    var url  = $(this).attr('href');
+    var data = $(this).serialize();
+    $.post(url, data, function(response) {
+      $('.container .active .like_number').text(response['likes'])
+      $('.container .active .like').html("Unlike");
+      $('.container .active .like').attr('href', '/albums/' +response['album_id']+ '/photo/'+ response['photo_id']+ '/dislike');
+      $('.container .active .like').removeClass('like').addClass('unlike');
+    });
+  });
 
-  //   $.post(url, data, function(response) {
-  //     // debugger
-  //     $('.container .active .like_number').text(response['likes'])
-  //   });
-  // });
+  $('.container').on("click", ".active .unlike", function(e) {
+    e.preventDefault();
+
+    var url  = $(this).attr('href');
+    var data = $(this).serialize();
+    $.post(url, data, function(response) {
+      $('.container .active .like_number').text(response['likes'])
+      $('.container .active .unlike').html('Like');
+      $('.container .active .unlike').attr('href', '/albums/' +response['album_id']+ '/photo/'+ response['photo_id']);
+      $('.container .active .unlike').removeClass('unlike').addClass('like');
+    });
+  });
 });
 
 

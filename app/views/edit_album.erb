@@ -1,9 +1,9 @@
 <div class="container">
 <form action="/albums/<%=@album.id%>/edit" id="new_picture" method="post" enctype="multipart/form-data">
   Edit Album Title:
-  <input type="text" name="album_name" placeholder="Album Name"/value='<%=@album.album_name%>'>
+  <input type="text" name="album_name" placeholder="Album Name"/value='<%=@album.album_name%>'><br>
   Upload More Pictures:
-  <input type="file" name="image[1]">
+  <input type="file" id = 'file' name="image[1]">
 <p><a href="#" id='more_pictures'> More Pictures </a></p>
   Private? <br>
     <label for="true">Yes</label>
@@ -12,11 +12,12 @@
     <input type="radio" name="private" value="false" /></br>
   <input type="submit" name="submit" value="Edit">
 </form>
-
-</div>
-
 <ul class='destroy'>
-  Click on existing picture to delete:
+  <p>Click on existing picture to delete:</p>
 <% @album.photos.each do |photo| %>
   <li><a href='/photo/destroy/<%=photo.id%>'><img src="<%= photo.file.thumb.url %>"</a></li> 
 <% end %>
+
+</div>
+
+

@@ -1,5 +1,6 @@
 <% if @user.id == current_user.id %>
   <h1> Welcome, <%=current_user.username%> </h1>
+  <p><a href="/albums/upload">New Album</a></p>
   <img src="<%= current_user.file.url %>" height="200" style="max-width: 400px">
 
   <ul class="Private">
@@ -36,7 +37,6 @@
   </ul>
 
 
-  <p><a href="/albums/upload">New Album</a></p>
 
 <% else %>
 
@@ -45,7 +45,7 @@ YOU HAVE BEEN BLOCKED
 <% else %>
   <h1> <%= @user.username %></h1>
   <h1><img src="<%= @user.file.url %>" height="200" style="max-width: 400px"></h1>
-  <% if Following.find_by_user_id_and_follower_id(current_user.id, @user.id) != true %>
+  <% if Following.find_by_user_id_and_follower_id(current_user.id, @user.id) != nil %>
     <a href='/user/<%=@user.id%>/follow'> Follow </a><br>
     <a href='/user/<%=@user.id%>/block'> Block </a>
   <% else %>

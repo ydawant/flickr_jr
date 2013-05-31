@@ -59,3 +59,23 @@ get "/albums/:album_id/photo/:photo_id/dislike" do
   Like.find_by_user_id_and_photo_id(current_user.id,params[:photo_id]).destroy
   redirect "/albums/#{params[:album_id]}"
 end
+
+post '/albums/:album_id/photo/:photo_id' do
+  if Like.find_by_user_id_and_photo_id(current_user.id,params[:photo_id]) == nil
+  Like.create(:user_id => current_user.id, :photo_id => params[:photo_id])
+  end
+  photo = Photo.find(params[:photo_id])
+  photo_length = photo.likes.length
+  album = Album.find(photo.album_id)
+  content_type :json
+  {'likes' => "#{photo_length}", 'album_id' => "#{album.id}", 'photo_id' => "#{photo.id}" }.to_json
+end
+
+post "/albums/:album_id/photo/:photo_id/dislike" do
+  Like.find_by_user_id_and_photo_id(current_user.id,params[:photo_id]).destroy
+  photo = Photo.find(params[:photo_id])
+  photo_length = photo.likes.length
+  album = Album.find(photo.album_id)
+  content_type :json
+  {'likes' => "#{photo_length}", 'album_id' => "#{album.id}", 'photo_id' => "#{photo.id}" }.to_json
+end

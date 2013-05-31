@@ -1,13 +1,11 @@
 <div class='container'>    
 <form action="/albums/upload" id="new_picture" method="post" enctype="multipart/form-data">
-  <input type="text" name="album_name" placeholder="Album Name"/>
+  <input type="text" name="album_name" placeholder="Album Name"/><br>
   <input type="file" name="image[1]"><br>
 <p><a href="#" id='more_pictures'> More Pictures </a></p>
   Private? <br>
-    <label for="true">Yes</label>
-    <input type="radio" name="private" value="true" />
-    <label for="false">No</label>
-    <input type="radio" name="private" value="false" /></br>
+    <label for="true">Yes<input type="radio" name="private" value="true" /></label>
+    <label for="false">No<input type="radio" name="private" value="false" /></label>
 
   <input type="submit" name="submit" value="Upload">
 </form>

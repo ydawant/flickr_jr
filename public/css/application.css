@@ -31,12 +31,22 @@ body {
   text-align: center;
   color: black;
 }
+
+.frames .unlike {
+  text-align: center;
+  color: black;
+}
+
 .frames .active .like_number {
   color: white;
   margin-left:30px;
 }
 
 .frames .active .like {
+  color: white;
+  margin-left:30px;
+}
+.frames .active .unlike {
   color: white;
   margin-left:30px;
 }
@@ -58,7 +68,7 @@ th {
   z-index: 10000;
 }
 .frames li.first.active {
-  margin-left:350px;
+  margin-left:10%
 }
 
 .frames li.first {
@@ -66,13 +76,16 @@ th {
 }
 
 .frames li.active {
-  margin-top: 3%;
+  margin: auto;
   top:0;
   right:0;
   padding:10px;
   text-align: center;
   background: black;
   border-radius:7px;
+}
+.frames ul {
+  padding-left: 40%;
 }
 
 .frames li {
@@ -144,7 +157,7 @@ th {
   display:inline-block;
 }
 
-#new_picture input {
+#file {
   display:block;
 }
 
@@ -210,3 +223,17 @@ th {
   position:absolute;
   top: 0px;
 }
+
+.destroy {
+  list-style-type: none;
+  display: inline-block;
+  width: 100%;
+}
+
+.destroy li {
+  position: relative;
+  float: left;
+  margin-top:10px;
+  margin-right:10px;
+}
+

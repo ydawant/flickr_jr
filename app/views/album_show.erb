@@ -15,7 +15,7 @@
      <% if @album.photos.first == photo %>
      <li class="first active"> <img src="<%= photo.file.url %>" height="200" style="max-width: 400px"><br>
         <% if Like.find_by_user_id_and_photo_id(current_user.id,photo.id) %>  
-          <a class="like" href="/albums/<%= @album.id %>/photo/<%= photo.id %>/dislike">Unlike</a> 
+          <a class="unlike" href="/albums/<%= @album.id %>/photo/<%= photo.id %>/dislike">Unlike</a> 
           <span class ='like_number'><%= photo.likes.length %></span></li>
         <% else %>
           <a class="like" href="/albums/<%= @album.id %>/photo/<%= photo.id %>">like</a> 
@@ -24,7 +24,7 @@
      <% else %>
      <li class="next"> <img src="<%= photo.file.url %>" height="200" style="max-width: 400px"><br>
       <% if Like.find_by_user_id_and_photo_id(current_user.id,photo.id) %>  
-          <a class="like" href="/albums/<%= @album.id %>/photo/<%= photo.id %>/dislike">Unlike</a> 
+          <a class="unlike" href="/albums/<%= @album.id %>/photo/<%= photo.id %>/dislike">Unlike</a> 
           <span class ='like_number'><%= photo.likes.length %></span></li>
         <% else %>
           <a class="like" href="/albums/<%= @album.id %>/photo/<%= photo.id %>">like</a> 
